@@ -113,13 +113,12 @@ void chooseSpace(char** matrix, Player* p)
 char checkWinner(char** matrix)
 {
   for(int i = 0; i < 3; i++) {
-    if(matrix[i][0] == matrix[i][1] == matrix[i][2] && matrix[i][0] && matrix[i][1] && matrix[i][2]) printf("ganhou\n"); //return matrix[i][0];
-    else if(matrix[0][i] == matrix[1][i] == matrix[2][i] && matrix[0][i] && matrix[1][i] && matrix[2][i]) printf("ganhou\n"); //return matrix[0][i];
+    if(matrix[i][0] == matrix[i][1] && matrix[i][1] == matrix[i][2] && matrix[i][0] && matrix[i][1] && matrix[i][2]) return matrix[i][1];
+    if(matrix[0][i] == matrix[1][i] && matrix[1][i] == matrix[2][i] && matrix[0][i] && matrix[1][i] && matrix[2][i]) return matrix[0][i];
   }
 
-  if(matrix[0][0] == matrix[1][1] == matrix[2][2] && matrix[0][0] && matrix[1][1] && matrix[2][2]) return matrix[1][1];
-  else if(matrix[2][0] == matrix[1][1] == matrix[0][2] && matrix[2][0] && matrix[1][1] && matrix[0][2]) return matrix[1][1];
-
+  if(matrix[0][0] == matrix[1][1] && matrix[1][1] == matrix[2][2] && matrix[0][0] && matrix[1][1] && matrix[2][2]) return matrix[1][1];
+  if(matrix[2][0] == matrix[1][1] && matrix[1][1] == matrix[0][2] && matrix[2][0] && matrix[1][1] && matrix[0][2]) return matrix[1][1];
   return 'w';
 }
 
@@ -127,11 +126,9 @@ void getWinner(char charactere, Player* jogador, Player* pc)
 {
   if(charactere == jogador->charactere) {
     jogador->win = true;
-    printf("venceu\n");
   }
   else if(charactere == pc->charactere) {
     pc->win = true;
-    printf("perdeu\n");
   }
 
 }

@@ -4,6 +4,7 @@
 #include "matrix.h"
 
 void showMatrix(char** matrix);
+char showCharMatrix(char** matrix, int x, int y);
 
 int main()
 {
@@ -42,7 +43,13 @@ int main()
 
 void showMatrix(char** matrix)
 {
-  printf("[%c %c %c]\n", matrix[0][0], matrix[0][1], matrix[0][2]);
-  printf("[%c %c %c]\n", matrix[1][0], matrix[1][1], matrix[1][2]);
-  printf("[%c %c %c]\n", matrix[2][0], matrix[2][1], matrix[2][2]);
+  printf("[%c %c %c]\n", showCharMatrix(matrix, 0, 0), showCharMatrix(matrix, 0, 1), showCharMatrix(matrix, 0, 2));
+  printf("[%c %c %c]\n", showCharMatrix(matrix, 1, 0), showCharMatrix(matrix, 1, 1), showCharMatrix(matrix, 1, 2));
+  printf("[%c %c %c]\n", showCharMatrix(matrix, 2, 0), showCharMatrix(matrix, 2, 1), showCharMatrix(matrix, 2, 2));
+}
+
+char showCharMatrix(char** matrix, int x, int y)
+{
+  if(matrix[x][y]) return matrix[x][y];
+  else return '.';
 }
