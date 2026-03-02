@@ -1,7 +1,3 @@
-bugs:
-	1. ele não identifica quando alguém ganha, então o loop fica (;;)
-
 implementar:
-	1. jogada do pc aleatória
 	2. tabela de score
 	3. multiplayer local

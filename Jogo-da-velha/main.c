@@ -8,37 +8,42 @@ char showCharMatrix(char** matrix, int x, int y);
 
 int main()
 {
-	Player jogador;
-  initPlayer(&jogador);
+    Player jogador;
+    initPlayer(&jogador);
 
-  Player pc;
-  initPC(&pc, jogador.charactere);
+    Player pc;
+    initPC(&pc, jogador.charactere);
 
-  char** matrix = initMatrix();
-  //showMatrix(matrix);
+    char** matrix = initMatrix();
 
-  if(jogador.charactere == 'X') {
-    while (!jogador.win && !pc.win) {
-      chooseSpace(matrix, &jogador);
-      //randomSpace(&pc);
-      //chooseSpace(matrix, &pc);
-      showMatrix(matrix);
-      getWinner(checkWinner(matrix), &jogador, &pc);
+    if(jogador.charactere == 'X') {
+	do {
+	    chooseSpace(matrix, &jogador);
+	    showMatrix(matrix);
+	    if(getWinner(checkWinner(matrix), &jogador, &pc)) break;
+	    printf("\nNow it's my turn! \n");
+	    chooseSpace(matrix, &pc);
+	    showMatrix(matrix);
+	    printf("\n");
+	    if(getWinner(checkWinner(matrix), &jogador, &pc)) break;
+	} while (!jogador.win && !pc.win);
+    } else {
+	do {
+	    printf("\nNow it's my turn! \n");
+	    chooseSpace(matrix, &pc);
+	    showMatrix(matrix);
+	    if(getWinner(checkWinner(matrix), &jogador, &pc)) break;
+	    printf("\n");
+	    chooseSpace(matrix, &jogador);
+	    showMatrix(matrix);
+	    if(getWinner(checkWinner(matrix), &jogador, &pc)) break;
+	} while(!jogador.win && !pc.win);
     }
-  } else {
-    while(!jogador.win && !pc.win) {
-      //randomSpace(&pc);
-      //chooseSpace(matrix, &pc);
-      chooseSpace(matrix, &jogador);
-      showMatrix(matrix);
-      getWinner(checkWinner(matrix), &jogador, &pc);
-    }
-  }
-  
-  if(jogador.win) printf("Parabéns! Você venceu!\n");
-  else if(pc.win) printf("Que pena, você perdeu!\n");
 
-  return 0;
+    if(jogador.win) printf("Parabéns! Você venceu!\n");
+    else if(pc.win) printf("Que pena, você perdeu!\n");
+
+    return 0;
 }
 
 void showMatrix(char** matrix)
