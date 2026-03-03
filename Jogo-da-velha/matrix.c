@@ -27,7 +27,7 @@ bool checkSpace(char** matrix, int x, int y)
 
 void printMessage(Player* p, char message[])
 {
-    if(strcmp(p->name, "PC")) {
+    if(checkPC(p)) {
 	printf("%s", message);
     }
 }
@@ -39,13 +39,13 @@ void chooseSpace(char** matrix, Player* p)
     while(true){
 	int num;
 
-	if(strcmp(p->name, "PC")) {
+	if(checkPC(p)) {
+	    num = getSpacePC();
+	} else {
 	    num = 0;
 	    clearInputBuffer();
 	    int c = getc(stdin);
 	    num = c - '0';
-	} else {
-	    num = getSpacePC();
 	}
 
 	switch (num) {
@@ -132,14 +132,10 @@ char checkWinner(char** matrix)
     return 'w';
 }
 
-bool getWinner(char charactere, Player* jogador, Player* pc)
+bool getWinner(char charactere, Player* p)
 {
-    if(charactere == jogador->charactere) {
-	jogador->win = true;
-	return true;
-    }
-    else if(charactere == pc->charactere) {
-	pc->win = true;
+    if(charactere == p->charactere) {
+	p->win = true;
 	return true;
     }
 

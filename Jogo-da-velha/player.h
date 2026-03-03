@@ -7,7 +7,9 @@ typedef struct player {
 } Player;
 
 void initPlayer(Player* player);
-void cleaningNewLine(Player *p);
+void initPlayer2(Player* player, int pCharactere);
+void cleaningNewLine(Player* p);
 int getCharactere();
+bool checkPC(Player* p);
 void initPC(Player* pc, int pCharactere);
 int getSpacePC();

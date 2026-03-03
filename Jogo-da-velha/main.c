@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
 #include "player.h"
 #include "matrix.h"
 
+Player chooseOponent(Player* jogador);
 void showMatrix(char** matrix);
 char showCharMatrix(char** matrix, int x, int y);
 
@@ -11,39 +13,63 @@ int main()
     Player jogador;
     initPlayer(&jogador);
 
-    Player pc;
-    initPC(&pc, jogador.charactere);
+    Player oponent = chooseOponent(&jogador);
 
     char** matrix = initMatrix();
 
     if(jogador.charactere == 'X') {
-	do {
+	while(true) {
 	    chooseSpace(matrix, &jogador);
 	    showMatrix(matrix);
-	    if(getWinner(checkWinner(matrix), &jogador, &pc)) break;
-	    printf("\nNow it's my turn! \n");
-	    chooseSpace(matrix, &pc);
+	    if(getWinner(checkWinner(matrix), &jogador)) break;
+
+	    if(checkPC(&oponent)) printf("\nNow it's my turn! \n");
+
+	    chooseSpace(matrix, &oponent);
 	    showMatrix(matrix);
+	    if(getWinner(checkWinner(matrix), &oponent)) break;
+
 	    printf("\n");
-	    if(getWinner(checkWinner(matrix), &jogador, &pc)) break;
-	} while (!jogador.win && !pc.win);
+	}
     } else {
-	do {
-	    printf("\nNow it's my turn! \n");
-	    chooseSpace(matrix, &pc);
+	while(true) {
+	    if(checkPC(&oponent)) printf("\nNow it's my turn! \n");
+
+	    chooseSpace(matrix, &oponent);
 	    showMatrix(matrix);
-	    if(getWinner(checkWinner(matrix), &jogador, &pc)) break;
-	    printf("\n");
+	    if(getWinner(checkWinner(matrix), &oponent)) break;
+
+	    printf("\n");		
+
 	    chooseSpace(matrix, &jogador);
 	    showMatrix(matrix);
-	    if(getWinner(checkWinner(matrix), &jogador, &pc)) break;
-	} while(!jogador.win && !pc.win);
+	    if(getWinner(checkWinner(matrix), &jogador)) break;
+	}
     }
 
-    if(jogador.win) printf("Parabéns! Você venceu!\n");
-    else if(pc.win) printf("Que pena, você perdeu!\n");
+    if(jogador.win) printf("");
+    else if(oponent.win) printf("");
+    else printf("");
 
     return 0;
+}
+
+Player chooseOponent(Player* jogador)
+{
+    int p;
+    printf("Would you like to play with another local player? (y/n)");
+    p = fgetc(stdin);
+    p = toupper(p);
+
+    if(p != 'Y') {
+	Player pc;
+	initPC(&pc, jogador->charactere);
+	return pc;
+    } else {
+	Player jogador2;
+	initPlayer2(&jogador2, jogador->charactere);
+	return jogador2;
+    }
 }
 
 void showMatrix(char** matrix)

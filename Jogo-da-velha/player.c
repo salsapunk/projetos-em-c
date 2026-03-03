@@ -23,6 +23,25 @@ void initPlayer(Player* player)
     player->win = false;
 }
 
+void initPlayer2(Player* player, int pCharactere)
+{
+    if(player == NULL) {
+	printf("Invalid player pointer!\n");
+	return;
+    }
+
+    printf("Type here your nickname: ");
+    fgets(player->name, MAX_VALUE, stdin);
+    
+    cleaningNewLine(player);
+    
+    if(pCharactere == 'X') player->charactere = 'O';
+    else player->charactere = 'X';
+    
+    player->win = false;
+
+}
+
 void cleaningNewLine(Player* p)
 {
     int len = strlen(p->name);
@@ -44,6 +63,13 @@ int getCharactere() {
     }
 }
 
+bool checkPC(Player* p)
+{
+    //strcmp retorna 0 se as strings forem iguais
+    if(!strcmp(p->name, "PC")) return true;
+    else return false;
+}
+
 //PC
 void initPC(Player* pc, int pCharactere)
 {
@@ -59,6 +85,7 @@ void initPC(Player* pc, int pCharactere)
 
     if(pCharactere == 'X') pc->charactere = 'O';
     else pc->charactere = 'X';
+    
     pc->win = false;
 }
 
