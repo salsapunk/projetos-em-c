@@ -1,7 +1,6 @@
 bugs:
-	1. o jogo quebra antes de escolher jogar multi ou singleplayer
+	0.
 
 implementar:
 	1. tabela de score
-	2. multiplayer local -> em desenvolvimento
-	3. esconder os números já preenchidos
+	2. esconder os números já preenchidos

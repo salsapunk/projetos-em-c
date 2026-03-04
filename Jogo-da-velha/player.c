@@ -6,6 +6,12 @@
 #include <time.h>
 #include "player.h"
 
+void clearInputBuffer()
+{
+    int dummy;
+    while((dummy = getchar()) != '\n' && dummy != EOF);
+}
+
 //Player
 void initPlayer(Player* player)
 {
@@ -16,7 +22,7 @@ void initPlayer(Player* player)
 
     printf("Type here your nickname: ");
     fgets(player->name, MAX_VALUE, stdin);
-    
+
     cleaningNewLine(player);
     
     player->charactere = getCharactere();
@@ -30,6 +36,7 @@ void initPlayer2(Player* player, int pCharactere)
 	return;
     }
 
+    clearInputBuffer();
     printf("Type here your nickname: ");
     fgets(player->name, MAX_VALUE, stdin);
     
@@ -53,6 +60,7 @@ int getCharactere() {
     while(true) {
 	int c = fgetc(stdin);
 	c = toupper(c);
+	clearInputBuffer();
 
 	if(c != 'X' && c != 'O') {
 	    printf("Invalid char! Try again.");

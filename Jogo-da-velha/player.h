@@ -6,6 +6,7 @@ typedef struct player {
 	bool win;
 } Player;
 
+void clearInputBuffer();
 void initPlayer(Player* player);
 void initPlayer2(Player* player, int pCharactere);
 void cleaningNewLine(Player* p);

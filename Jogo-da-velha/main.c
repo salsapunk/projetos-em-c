@@ -24,6 +24,7 @@ int main()
 	    if(getWinner(checkWinner(matrix), &jogador)) break;
 
 	    if(checkPC(&oponent)) printf("\nNow it's my turn! \n");
+	    else printf("\n");
 
 	    chooseSpace(matrix, &oponent);
 	    showMatrix(matrix);
@@ -34,6 +35,7 @@ int main()
     } else {
 	while(true) {
 	    if(checkPC(&oponent)) printf("\nNow it's my turn! \n");
+	    else printf("\n");
 
 	    chooseSpace(matrix, &oponent);
 	    showMatrix(matrix);
@@ -47,9 +49,10 @@ int main()
 	}
     }
 
-    if(jogador.win) printf("");
-    else if(oponent.win) printf("");
-    else printf("");
+    if(jogador.win) printf("Congrats, %s! You've won!\n");
+    else if(oponent.win && !checkPC(&oponent)) printf("Congrats, %s!, You've won!\n");
+    else if(oponent.win && checkPC(&oponent)) printf("Too bad, I've won!\n");
+    else printf("Not bad! No one won!\n");
 
     return 0;
 }
@@ -58,8 +61,11 @@ Player chooseOponent(Player* jogador)
 {
     int p;
     printf("Would you like to play with another local player? (y/n)");
-    p = fgetc(stdin);
-    p = toupper(p);
+    do {
+	p = fgetc(stdin);
+	p = toupper(p);
+	if(p != 'Y' && p != 'N') printf("Type the right char! (y/n)\n>");
+    } while(p != 'Y' && p != 'N');
 
     if(p != 'Y') {
 	Player pc;

@@ -4,11 +4,7 @@
 #include <string.h>
 #include "player.h"
 
-void clearInputBuffer()
-{
-    int dummy;
-    while((dummy = getchar()) != '\n' && dummy != EOF);
-}
+
 
 char** initMatrix()
 {
@@ -27,25 +23,26 @@ bool checkSpace(char** matrix, int x, int y)
 
 void printMessage(Player* p, char message[])
 {
-    if(checkPC(p)) {
+    if(!checkPC(p)) {
 	printf("%s", message);
     }
 }
 
 void chooseSpace(char** matrix, Player* p)
 {
-    printMessage(p, "(1, 2, 3)\n(4, 5, 6)\n(7, 8, 9)\nWhere do you want to put your char? ");
+    if(!checkPC(p)) printf("(1, 2, 3)\n(4, 5, 6)\n(7, 8, 9)\n%s, where do you want to put your char? ", p->name);
 
     while(true){
-	int num;
+	int num = 0;
 
 	if(checkPC(p)) {
 	    num = getSpacePC();
 	} else {
-	    num = 0;
-	    clearInputBuffer();
 	    int c = getc(stdin);
+	    printf("%d\n", c);
+	    clearInputBuffer();
 	    num = c - '0';
+	    printf("%d\n", num);
 	}
 
 	switch (num) {
@@ -114,10 +111,22 @@ void chooseSpace(char** matrix, Player* p)
 		break;
 	    default:
 		printMessage(p, "Invalid number! Try again!\n");
-		break;
+		continue;
 	}
 	break;
     }
+}
+
+bool checkFull(char** matrix)
+{
+    int full = 0;
+    for(int i = 0; i < 3; i++) {
+	for(int j = 0; j < 3; j++) {
+	    if(matrix[i][j]) full++;
+	}
+    }
+    if(full == 9) return true;
+    else return false;
 }
 
 char checkWinner(char** matrix)
@@ -129,6 +138,9 @@ char checkWinner(char** matrix)
 
     if(matrix[0][0] == matrix[1][1] && matrix[1][1] == matrix[2][2] && matrix[0][0] && matrix[1][1] && matrix[2][2]) return matrix[1][1];
     if(matrix[2][0] == matrix[1][1] && matrix[1][1] == matrix[0][2] && matrix[2][0] && matrix[1][1] && matrix[0][2]) return matrix[1][1];
+
+    if(checkFull(matrix)) return 'f';
+
     return 'w';
 }
 
@@ -136,6 +148,9 @@ bool getWinner(char charactere, Player* p)
 {
     if(charactere == p->charactere) {
 	p->win = true;
+	return true;
+    }
+    else if(charactere == 'f') {
 	return true;
     }
 
