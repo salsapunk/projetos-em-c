@@ -4,8 +4,6 @@
 #include <string.h>
 #include "player.h"
 
-
-
 char** initMatrix()
 {
     char** matrix = (char**)malloc(3 * sizeof(char*));
@@ -30,7 +28,16 @@ void printMessage(Player* p, char message[])
 
 void chooseSpace(char** matrix, Player* p)
 {
-    if(!checkPC(p)) printf("(1, 2, 3)\n(4, 5, 6)\n(7, 8, 9)\n%s, where do you want to put your char? ", p->name);
+    if(!checkPC(p)) {
+	printf("(%c, %c, %c)\n"
+		"(%c, %c, %c)\n"
+		"(%c, %c, %c)\n"
+		"%s, where do you want to put your char? ",
+		matrix[0][0] ? matrix[0][0] : '1', matrix[0][1] ? matrix[0][1] : '2', matrix[0][2] ? matrix[0][2] : '3',
+		matrix[1][0] ? matrix[1][0] : '4', matrix[1][1] ? matrix[1][1] : '5', matrix[1][2] ? matrix[1][2] : '6',
+		matrix[2][0] ? matrix[2][0] : '7', matrix[2][1] ? matrix[2][1] : '8', matrix[2][2] ? matrix[2][2] : '9',
+		p->name);
+    }
 
     while(true){
 	int num = 0;
@@ -39,10 +46,8 @@ void chooseSpace(char** matrix, Player* p)
 	    num = getSpacePC();
 	} else {
 	    int c = getc(stdin);
-	    printf("%d\n", c);
 	    clearInputBuffer();
 	    num = c - '0';
-	    printf("%d\n", num);
 	}
 
 	switch (num) {

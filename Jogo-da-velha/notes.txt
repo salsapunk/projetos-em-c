@@ -2,5 +2,4 @@ bugs:
 	0.
 
 implementar:
-	1. tabela de score
-	2. esconder os números já preenchidos
+	1. esconder os números já preenchidos

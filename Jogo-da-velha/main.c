@@ -15,6 +15,8 @@ int main()
 
     Player oponent = chooseOponent(&jogador);
 
+    if(checkPC(&oponent)) clearInputBuffer();
+
     char** matrix = initMatrix();
 
     if(jogador.charactere == 'X') {
