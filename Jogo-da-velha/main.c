@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <ctype.h>
+#include "stdbool.h"
 #include "player.h"
 #include "matrix.h"
 
@@ -51,8 +51,8 @@ int main()
 	}
     }
 
-    if(jogador.win) printf("Congrats, %s! You've won!\n");
-    else if(oponent.win && !checkPC(&oponent)) printf("Congrats, %s!, You've won!\n");
+    if(jogador.win) printf("Congrats, %s! You've won!\n", jogador.name);
+    else if(oponent.win && !checkPC(&oponent)) printf("Congrats, %s!, You've won!\n", oponent.name);
     else if(oponent.win && checkPC(&oponent)) printf("Too bad, I've won!\n");
     else printf("Not bad! No one won!\n");
 

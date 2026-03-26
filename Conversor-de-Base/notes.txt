@@ -1,0 +1,10 @@
+funcionalidades:
+    1. converter os números de base em base (ex.: de octal para decimal)
+    2. implementar as bases: octal, hexadecimal, decimal e binário
+
+    octal <-> binário
+    octal <-> decimal
+    octal <-> hexadecimal
+    binário <-> decimal
+    binário <-> hexadecimal
+    hexadecimal <-> decimal
