@@ -1,22 +1,48 @@
-#include <string.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
-
-#define MAX 11
+#include "./include/input.h"
 
 int main(int argc, char *argv[])
 {
-    //converte só decimal
-    int base = 10;
+    int choice = menuSelection();
 
-    if(!strcmp(argv[2], "decimal"))
-	base = 10;
-    if(!strcmp(argv[2], "octal"))
-	base = 8;
-    if(!strcmp(argv[2], "hexadecimal"))
-	base = 16;
-    if(!strcmp(argv[2], "binario"))
-	base = 2;
- 
-    printf("%d\n", (int)strtol(argv[1], NULL, base));
+    switch (choice) {
+	case 1:
+	    printf("%d", choice); 
+	    break;
+	case 2:
+	    printf("%d", choice);
+	    break;
+	case 3:
+	    printf("%d", choice);
+	    break;
+	case 4:
+	    printf("%d", choice);
+	    break;
+	case 5:
+	    printf("%d", choice);
+	    break;
+	case 6:
+	    printf("%d", choice);
+	    break;
+	case 7:
+	    printf("%d", choice);
+	    break;
+	case 8:
+	    printf("%d", choice);
+	    break;
+	case 9:
+	    printf("%d", choice);
+	    break;
+	case 10:
+	    printf("%d", choice); 
+	    break;
+	case 11:
+	    printf("%d", choice); 
+	    break;
+	case 12:
+	    printf("%d", choice); 
+	    break;
+    }
 }

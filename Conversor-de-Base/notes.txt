@@ -1,6 +1,14 @@
-funcionalidades:
-    1. converter os números de base em base (ex.: de octal para decimal)
-    2. implementar as bases: octal, hexadecimal, decimal e binário
+requisitos (por prioridade):
+    alta -
+	1. converter os números de base em base (ex.: de octal para decimal)
+	2. implementar as bases: octal, hexadecimal, decimal e binário
+    baixa -
+	1. pegar números e bases por flags (opcional)
+
+    
+    BINÁRIO -> long long
+    RESTO -> int
+
 
     octal <-> binário
     octal <-> decimal
