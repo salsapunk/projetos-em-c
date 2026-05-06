@@ -1,5 +1,6 @@
 requisitos (por prioridade):
     alta -
+	!( USAR OPERAÇÕES BIT A BIT para binário, octal e hexadecimal ) -> procurar outro método para o decimal
 	1. converter os números de base em base (ex.: de octal para decimal)
 	2. implementar as bases: octal, hexadecimal, decimal e binário
     baixa -
@@ -8,7 +9,6 @@ requisitos (por prioridade):
     
     BINÁRIO -> long long
     RESTO -> int
-
 
     octal <-> binário
     octal <-> decimal
